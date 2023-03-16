@@ -68,3 +68,7 @@ end
 gem "cssbundling-rails", "~> 1.1"
 
 gem "jsbundling-rails", "~> 1.1"
+
+gem "sidekiq", "~> 7.0"
+
+gem "devise", "~> 4.9"

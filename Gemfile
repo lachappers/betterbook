@@ -54,6 +54,9 @@ group :development, :test do
 
   # rspec testing framework - https://github.com/rspec/rspec-rails/tree/6-0-maintenance
   gem 'rspec-rails', '~> 6.0.0'
+
+  # build factories for testing - https://github.com/thoughtbot/factory_bot_rails 
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -66,7 +69,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  # add schema to model view
+  # add schema to model view - https://github.com/ctran/annotate_models
   gem 'annotate'
   
   # send emails

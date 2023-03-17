@@ -23,5 +23,5 @@ class Profile < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
   validates :first_name, presence: true, length: {maximum: 30}, allow_blank: false
-  validates :last_name, presence: true, length: {maximum: 30} allow_blank: false
+  validates :last_name, presence: true, length: {maximum: 30}, allow_blank: false
 end

@@ -62,6 +62,8 @@ end
 group :test do
   # minimise testing spec verbosity https://github.com/thoughtbot/shoulda-matchers
  gem 'shoulda-matchers', '~> 5.0'
+  # generate acceptance tests - https://github.com/teamcapybara/capybara
+ gem 'capybara'
 end
 
 group :development do

@@ -24,22 +24,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-  
-  # subject { User.current_user } 
-  describe 'authentication status verification' do
-    context "when user is not logged in" do
-      it "redirects user to login screen" do
-        visit root_path
-        expect(response).to redirect_to :new_user_session
-      end
-    end
-
-    context 'when user is logged in' do
-      it 'redirects user to dashboard' do
-        visit root_path
-        expect(response).to redirect_to :root_path
-      end
-    end
+  describe 'associations' do
+    it { should have_many(:posts) }
+    it { should have_many(:comments) }
+    it { should have_many(:likes) }
+    it { should have_one(:profile) }
+    it { should have_many(:notifications) }
+    it { should have_many(:friendships) }
   end
 end

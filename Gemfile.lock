@@ -299,6 +299,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   factory_bot_rails
+  guard
   guard-rspec
   importmap-rails
   jbuilder

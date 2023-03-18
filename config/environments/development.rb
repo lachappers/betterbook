@@ -76,4 +76,9 @@ Rails.application.configure do
   # Jobs
   config.active_job.queue_adapter = :sidekiq
 
+  # config.assets.prefix = "/dev-assets" 
+  # config.assets.compile = true
+  # config.assets.debug = true
+
+
 end

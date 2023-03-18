@@ -57,6 +57,10 @@ group :development, :test do
 
   # build factories for testing - https://github.com/thoughtbot/factory_bot_rails 
   gem 'factory_bot_rails'
+
+  # automate tasks on file modification - https://github.com/guard/guard-rspec
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 group :test do
@@ -82,8 +86,7 @@ group :development do
   # send emails
   gem "letter_opener"
 
-  # automate tasks on file modification - https://github.com/guard/guard-rspec
-  gem 'guard-rspec', require: false
+
 end
 
 

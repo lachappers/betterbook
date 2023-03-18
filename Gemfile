@@ -81,6 +81,9 @@ group :development do
   
   # send emails
   gem "letter_opener"
+
+  # automate tasks on file modification - https://github.com/guard/guard-rspec
+  gem 'guard-rspec', require: false
 end
 
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe USer, type: :system do
+RSpec.describe User, type: :system do
    
     before(:each) do
         @user = create(:user)
@@ -33,7 +33,7 @@ RSpec.describe USer, type: :system do
 
         context 'if pending friend request' do
             it 'shows friend pending button' do
-                
+
             end
         end
 
@@ -44,8 +44,8 @@ RSpec.describe USer, type: :system do
         end
     end
 
-    describe '.create' do
-        it 'can be text or an image' do
+    describe '.show' do
+        it 'shows user profile' do
             
         end
     end

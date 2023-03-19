@@ -18,10 +18,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
   </head>
 
-  <body class = "container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-    <div>Hello world!</div>
+  <body class = "min-h-screen bg-gray-100 flex flex-col">
+
+    <header>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </header>
+
+    <main class="col-start-2 col-end-5 mx-auto container border-solid border-2 border-pink-600">
+      <%# <%= yield %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+    
+    <footer>
+    </footer>
   </body>
 </html>

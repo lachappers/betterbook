@@ -18,17 +18,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
   </head>
 
+
+
   <body class = "min-h-screen bg-gray-100 flex flex-col">
 
     <header>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+      <%= render '/shared/navbar' %>
     </header>
 
-    <main class="col-start-2 col-end-5 mx-auto container border-solid border-2 border-pink-600">
-      <%# <%= yield %>
-      <%= content_for?(:content) ? yield(:content) : yield %>
-    </main>
+    <div class="grow grid grid-cols-4 border-solid border-1 border-green-300">
+      <header class="col-start-1 col-end-2 h-full border-solid border-2 border-red-300">
+        <%= render "/shared/sidebar" %>
+      </header>
+
+      <main class="col-start-2 col-end-5 mx-auto container border-solid border-2 border-pink-600">
+        <%# <%= yield %>
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </main>
+    </div>
     
     <footer>
     </footer>

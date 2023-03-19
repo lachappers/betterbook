@@ -1,10 +1,12 @@
 class FriendshipsController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @friendship = Friendship.new(friendship_params)
   end
 
   def destroy
-    
+    # @friendship = current_user.friendships.find_by(status: false)
   end
 
   def index

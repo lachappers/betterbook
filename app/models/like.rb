@@ -24,5 +24,5 @@ class Like < ApplicationRecord
 
   validates :user_id, uniqueness: {scope: [:likeable_id, :likeable_type]}
 
-  # has_many :notifications, as: :notice
+  has_many :notifications, as: :notifiable
 end

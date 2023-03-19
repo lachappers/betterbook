@@ -1,0 +1,28 @@
+<div class = "bg-white border-2 border-gray-300 rounded-lg mb-1 p-4" id="<%= dom_id post %>" >
+  <div class="">
+    <%# <strong>Post Content:</strong> %>
+    <div><%= post.content %> </div>
+    <br>
+    <%= post.user.profile.username %>
+  </div>
+
+  <div class="post-likes-container">
+    <%= render partial: 'likes/button', locals: { likeable: post } %>
+  </div>
+
+  <div class="post-comments-container">
+    
+    <div class="section-heading">
+      <strong>Comments:</strong>
+    </div>
+    
+    <div class="post-comments">
+      <%= render post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+    </div>
+    
+    <div class="new-post-comment">
+      <%= render partial: 'comments/form', locals: { post: post, parent: nil} %>
+    </div>
+  </div>
+
+</div>

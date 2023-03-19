@@ -27,7 +27,7 @@ class Comment < ApplicationRecord
 
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, foreign_key: :parent_id
-  # has_many :notifications, as: :notice
+  has_many :notifications, as: :notifiable
   
   validates :content, length: {maximum: 1500}, allow_blank: false
 end

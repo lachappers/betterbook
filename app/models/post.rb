@@ -21,7 +21,7 @@ class Post < ApplicationRecord
 
   has_many :comments
   has_many :likes, as: :likeable
-  # has_many :notifications, as: :notice
+  has_many :notifications, as: :notifiable
 
   validates :content, length: {maximum: 1500}, allow_blank: false
 end

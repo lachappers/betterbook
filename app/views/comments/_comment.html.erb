@@ -1,0 +1,25 @@
+<article>
+  <p><%= comment.content %></p>
+  <small>by <%= comment.user.profile.username %></small>
+  
+  <a href="#" class="comment-form-display">reply</a>
+  <div class="comment-form" style="display: none;">
+      <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment}%>
+  </div>
+
+    <%= render partial: 'likes/button', locals: { likeable: comment } %>
+  <hr />
+
+  <div class="sub-comment" style="padding-left: 20px;">
+    <%= render comment.comments.order(id: :desc) %>
+  </div> 
+</article>
+
+<script>
+  document.querySelectorAll('.comment-form-display').forEach((el) => {
+  el.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    el.nextElementSibling.style = 'display: block;'
+  }) 
+})
+</script>

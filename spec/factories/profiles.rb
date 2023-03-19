@@ -20,9 +20,8 @@
 #
 FactoryBot.define do
   factory :profile do
-    username { "MyString" }
-    first_name { "MyString" }
-    last_name { "MyString" }
-    user { nil }
+    username { "#{Faker::Verb.base}-#{Faker::Hipster.unique.word}" }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
   end
 end

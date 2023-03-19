@@ -3,22 +3,25 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   
   def new
+    # @profile = Profile.new
   end
 
   def create
+    # @profile = Profile.create!(profile_params)
   end
 
   def show
     @profile = Profile.find(params[:id])
-    # @friends = current_user.friends
-    # @pending_requests = current_user.pending_requests
-    # @friend_requests = current_user.received_requests
+    @friends = current_user.friends
+    @pending_requests = current_user.sent_requests
+    @friend_requests = current_user.received_requests
   end
 
   def index
   end
 
   def edit
+
   end
 
   def update
@@ -34,6 +37,7 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
+    image.purge
   end
 
   private
@@ -47,6 +51,6 @@ class ProfilesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :username)
+    params.require(:profile).permit(:first_name, :last_name, :username, :id)
   end
 end

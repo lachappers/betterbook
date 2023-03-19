@@ -23,7 +23,7 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
   belongs_to :user
 
-  validates :user_id, uniqueness: { scope: %i[notifiable_id, notifiable_type] }
+  # validates :user_id, uniqueness: { scope: %i[notifiable_id, notifiable_type] }
 
   scope :unread, -> { where(read: false)}
 

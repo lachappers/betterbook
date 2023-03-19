@@ -3,12 +3,12 @@ class ApplicationController < ActionController::Base
 
     layout :layout_by_resource
     protect_from_forgery with: :exception
-    before_action :configure_permitted_parameters, if: :devise_controller?
 
     # redirect user to login page after signout
     def after_sign_out_path_for(resource_or_scope)
         new_user_session_path
     end
+
 
     private
 
@@ -21,10 +21,29 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    protected
+    # def profile_params
+    #     params.require(:profile).permit(:id)
+    # end
 
-    def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :username, :profile_image])
-    end
+    # protected
+
+    # def configure_sign_up_params
+    # #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+    #     devise_parameter_sanitizer.permit(:sign_up, keys: permitted_attributes)
+    # end
+      
+    # def configure_account_update_params
+    #     devise_parameter_sanitizer.permit(:account_update, keys: permitted_attributes)
+    # end
+      
+    # def permitted_attributes
+    #     [
+    #     :email,
+    #     :password,
+    #     :password_confirmation,
+    #     :remember_me,
+    #     :profile_image,
+    #     profile_attributes: [:first_name, :last_name, :username, :id] 
+    #     ]
+    # end
 end

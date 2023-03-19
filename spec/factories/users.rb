@@ -23,7 +23,15 @@
 #
 FactoryBot.define do
     factory :user do
-       sequence(:email) {|n| "test#{n}@test.com"}
+       email { Faker::Internet.unique.email }
        password {"password"}
+       password_confirmation {"password"}
+    #    profile_image {Faker::Avatar.image}
+
+       factory :user_with_profile do
+            after(:create) do |user|
+                create(:profile, user: user)
+            end
+       end
     end
 end

@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
-  def root
+  def home
     @post = Post.new
+    
 
     # scope to see all posts from everyone
     @posts = Post.all.order(created_at: :desc)
@@ -9,4 +10,5 @@ class StaticPagesController < ApplicationController
     # scope to see network and own posts
     # @posts = current_user.get_network_posts
   end
+
 end

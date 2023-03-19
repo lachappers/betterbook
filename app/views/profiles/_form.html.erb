@@ -1,0 +1,25 @@
+<div>
+    <h2>Edit Profile</h2>
+    <%= form_for(@profile) do |pf| %>
+
+    <div class = "field">
+        <%= pf.label :username %><br />
+        <%= pf.text_field :username %>
+    </div>
+    
+    <div class = "field">
+        <%= pf.label :first_name %><br />
+        <%= pf.text_field :first_name %>
+    </div>
+    <div class = "field">
+        <%= pf.label :last_name %><br />
+        <%= pf.text_field :last_name %>
+    </div>
+
+    <div class="actions">
+        <%= pf.submit "Update" %>
+    </div>
+    <% end %>
+</div>
+
+<%= link_to "Back", :back %>

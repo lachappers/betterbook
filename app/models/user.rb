@@ -33,6 +33,12 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   # has_one_attached :profile_image
   # has_many :notifications, dependent: :destroy
+  has_many :friendships_as_sender, class_name: :Friendship, foreign_key: :sender_id, dependent: :destroy
+  has_many :friendships_as_recipient, class_name: :Friendship, foreign_key: :recipient_id, dependent: :destroy
+  has_many :friends, -> { merge(Friendship.friends) }, through: :friendships_as_sender, source: :recipient
+  has_many :sent_requests, -> { merge(Friendship.pending) }, through: :friendships_as_sender, source: :recipient
+  has_many :received_requests, -> { merge(Friendship.pending) }, through: :friendships_as_recipient, source: :sender
+
 
   accepts_nested_attributes_for :profile, allow_destroy: true
 end

@@ -8,11 +8,9 @@
 
 require 'factory_bot_rails'
 
-User.destroy_all
-Profile.destroy_all
-
 50.times do
     FactoryBot.create(:user_with_profile)
+    
 end
 
 p "Created #{User.count} users and profiles"

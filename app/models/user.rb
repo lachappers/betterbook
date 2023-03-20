@@ -40,7 +40,9 @@ class User < ApplicationRecord
   has_many :received_requests, -> { merge(Friendship.pending) }, through: :friendships_as_recipient, source: :sender
 
   has_one_attached :profile_image
+
   accepts_nested_attributes_for :profile, allow_destroy: true
+
 
   # validate :profile_image_size
 

@@ -1,6 +1,6 @@
 <div class="bg-white border rounded-lg">
 
-  <%= form_with model: post do |form| %>
+  <%= form_with model: @post do |form| %>
   
     <% if flash[:post_errors] %>
       <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3 mx-3">
@@ -23,8 +23,33 @@
   <% end %>
 </div>
 
+<div class="bg-white border rounded-lg">
 
-<form>
+  <%= form_with model: @post do |form| %>
+  
+    <% if flash[:post_errors] %>
+      <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3 mx-3">
+        <ul>
+          <% flash[:post_errors].each do |error|%>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="new-content-container">
+      <%= form.label :content,  class: "sr-only" %>
+      <%= form.text_area :content, placeholder: "Whats on your mind?" %>
+    </div>
+  
+    <div class="">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
+
+
+<%# <form>
    <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
            <label for="post" class="sr-only">Your post</label>
@@ -50,4 +75,4 @@
            </div>
        </div>
    </div>
-</form>
+</form> %>

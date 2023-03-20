@@ -1,0 +1,14 @@
+
+
+<div class="bg-white border-2 border-gray-300 rounded-lg mb-1 p-4">
+    <div>
+        <%= profile_image(friend, size: "small") %>
+    </div>
+    <div class="">
+        <%= link_to friend.profile.username, profile_path(friend)  %>
+    </div>
+    <div>
+        <%# <%= render 'friendships/button', user: friend %> %>
+    </div>
+
+</div>

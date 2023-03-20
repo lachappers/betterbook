@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: %i[index show] do
-    resources :friendships, only: %i[create]
     resources :profiles, only: [:show]
   end
 
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
   end
   resources :likes, only: [:create, :destroy]
   resources :profiles
-  resources :friendships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy, :update]
   
 
   resources :static_pages, only: :show

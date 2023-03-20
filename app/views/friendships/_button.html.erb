@@ -1,18 +1,27 @@
-<% if current_user.sent_requests.include?(@profile.user) %>
+<% if current_user.sent_requests.include?(user) %>
+    <% friendship = current_user.friendships_as_sender.find_by(recipient: user)%>
     <div class="w-fit remove-friend-button border rounded-lg p-2 bg-blue-600 text-white">
-        <%= button_to "Cancel Request", friendships_path, method: :delete %>
+        <%= button_to "Cancel Request", friendship_path(friendship), method: :delete %>
     </div>
-<% elsif current_user.received_requests.include?(@profile.user)%>
+<% elsif current_user.received_requests.include?(user)%>
+    <% friendship = current_user.friendships_as_recipient.find_by(sender: user)%>
     <div class="w-fit add-friend-button border rounded-lg p-2 bg-blue-600 text-white">
-        <%= button_to "Accept Friend Request", friendships_path(friend), params: { friendship: {confirmed: true}} %>
+        <%= button_to "Accept Friend Request", friendship_path(friendship), params: { friendship: {confirmed: true}}, method: :patch %>
     </div>
-<% elsif current_user.friends.include?(@profile.user)%>
+<% elsif current_user.friends.include?(user)%>
+    <% if current_user.friendships_as_recipient.include?(sender: user) %>
+        <% @friendship = current_user.friendships_as_recipient.find_by(sender: user) %>
+    <% else %> 
+        <% @friendship = current_user.friendships_as_sender.find_by(recipient: user) %>
+    <% end %>
+
+    <%= p friendship %>
+
     <div class="w-fit remove-friend-button border rounded-lg p-2 bg-blue-600 text-white">
-        <%= button_to "Remove Friend", friendships_path(friend), method: :delete %>
+        <%= button_to "Remove Friend", friendship_path(friendship), method: :delete %>
     </div>
 <% else %>
   <div class="w-fit add-friend-button border rounded-lg p-2 bg-blue-600 text-white">
-    <%= button_to "Add Friend", friendships_path, params: { friendship: { sender_id: current_user, recipient_id: @profile.user, confirmed: false }}, method: :post %>
+    <%= button_to "Add Friend", friendships_path, params: { friendship: { sender_id: current_user, recipient_id: user, confirmed: false }}, method: :post %>
   </div>
-
 <% end %>

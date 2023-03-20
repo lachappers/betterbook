@@ -1,2 +1,18 @@
-<h1>Friendships#create</h1>
-<p>Find me in app/views/friendships/create.html.erb</p>
+<% if current_user.sent_requests.include?(@profile.user) %>
+    <div class="w-fit remove-friend-button border rounded-lg p-2 bg-blue-600 text-white">
+        <%= button_to "Cancel Request", friendships_path, params: {friendship: {recipient_id: @profile.user}}, method: :delete %>
+    </div>
+<% elsif current_user.received_requests.include?(@profile.user)%>
+    <div class="w-fit add-friend-button border rounded-lg p-2 bg-blue-600 text-white">
+        <%= button_to "Accept Friend Request", friendships_path(friend), params: { friendship: {confirmed: true}} %>
+    </div>
+<% elsif current_user.friends.include?(@profile.user)%>
+    <div class="w-fit remove-friend-button border rounded-lg p-2 bg-blue-600 text-white">
+        <%= button_to "Remove Friend", friendships_path(friend), method: :delete %>
+    </div>
+<% else %>
+  <div class="w-fit add-friend-button border rounded-lg p-2 bg-blue-600 text-white">
+    <%= button_to "Add Friend", friendships_path, params: { friendship: { sender_id: current_user, recipient_id: @profile.user, confirmed: false }}, method: :post %>
+  </div>
+
+<% end %>

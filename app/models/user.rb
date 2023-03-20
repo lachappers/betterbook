@@ -33,9 +33,17 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :notifications, dependent: :destroy
   # has_many :notifications, as: :notice, dependent: :destroy
+
+  
   has_many :friendships_as_sender, class_name: :Friendship, foreign_key: :sender_id, dependent: :destroy
   has_many :friendships_as_recipient, class_name: :Friendship, foreign_key: :recipient_id, dependent: :destroy
-  has_many :friends, -> { merge(Friendship.friends) }, through: :friendships_as_sender, source: :recipient
+
+
+  has_many :sent_friends, -> { merge(Friendship.friends) }, through: :friendships_as_sender, source: :recipient
+  has_many :received_friends, -> { merge(Friendship.friends) }, through: :friendships_as_recipient, source: :sender
+
+
+  
   has_many :sent_requests, -> { merge(Friendship.pending) }, through: :friendships_as_sender, source: :recipient
   has_many :received_requests, -> { merge(Friendship.pending) }, through: :friendships_as_recipient, source: :sender
 
@@ -43,10 +51,16 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile, allow_destroy: true
 
+  def friends
+    sent_friends + received_friends
+  end
 
+  
   # validate :profile_image_size
 
   # private
+
+
 
   # def profile_image_size
   #   errors.add(:profile_image, 'should be less than 1MB') if profile_image.size > 1.megabytes

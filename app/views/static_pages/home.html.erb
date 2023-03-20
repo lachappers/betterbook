@@ -12,11 +12,13 @@
     </div>
   </div>
   
-  <div class = "right-nav-container w-1/3 border-solid border-2 border-green-600">
-  Birthdays, Contacts
-    <div>
+  <div class = "flex flex-col justify-center right-nav-container w-1/3 border-solid border-2 border-green-600">
+  
+    <div class = "">Birthdays</div>
+    <div class = "">Contacts</div>
+    <div class = "">
         <% current_user.friends.each do |friend| %>
-            <%= friend.username %>
+            <%= render "/shared/friend", friend: friend %>
         <% end %>
     </div>
   </div>

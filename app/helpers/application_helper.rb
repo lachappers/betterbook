@@ -39,6 +39,8 @@ module ApplicationHelper
         "w-10 h-10"
       when "x-small"
         "w-8 h-8"
+      when "medium"
+        "w-12 h-12"
       else
         "w-14 h-14"
       end

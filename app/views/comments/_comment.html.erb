@@ -1,24 +1,26 @@
 <article>
-  <div class="flex gap-2">
-    <div class=""><%= profile_image(comment.user, size: "small") %></div>
+  <div class="flex mt-2 gap-2 ">
+    <%= profile_image(comment.user, size: "small") %>
 
-    <div class="bg-gray-200 rounded-lg mb-1 p-2">
+    <div class="bg-gray-200 rounded-lg mb-1 p-2 px-4 min-w-3/6">
       <div class= "text-sm font-bold"><%= comment.user.profile.username %></div>
       <p><%= comment.content %></p>
     </div>
         
   </div>
-  <div class="ml-12"><%= render partial: 'likes/button', locals: { likeable: comment } %></div>
-  
-  <a href="#" class="comment-form-display">reply</a>
-  <div class="comment-form" style="display: none;">
-      <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment}%>
+  <div class="">
+    <div class="flex flex-wrap ml-16 mb-2 gap-4">
+      <div class="flex-none"><%= render partial: 'likes/button', locals: { likeable: comment } %></div>
+      <a href="#" class="comment-form-display grow">Reply</a>
+      <div class="comment-form shrink-0 min-w-full" style="display: none;">
+          <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment}%>
+      </div>
+    </div>
   </div>
+ 
 
 
-  <hr />
-
-  <div class="sub-comment" style="padding-left: 20px;">
+  <div class="sub-comment pl-14">
     <%= render comment.comments.order(id: :desc) %>
   </div> 
 </article>

@@ -1,14 +1,14 @@
 
 
-<div class="bg-white border-2 border-gray-300 rounded-lg mb-1 p-4">
-    <div>
+<div class="grid grid-cols-4 grid-rows-2 items-center bg-white border-2 border-gray-300 rounded-lg mb-1 p-2">
+    <div class="row-span-2">
         <%= profile_image(friend, size: "small") %>
     </div>
-    <div class="">
+    <div class="col-span-3 bg-white border-2 border-pink-300 font-bold text-sm">
         <%= link_to friend.profile.username, profile_path(friend)  %>
     </div>
-    <div>
-        <%# <%= render 'friendships/button', user: friend %> %>
+    <div class="col-span-2">
+        <%= render 'friendships/button', user: friend %>
     </div>
 
 </div>

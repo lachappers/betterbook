@@ -1,13 +1,21 @@
 <article>
-  <p><%= comment.content %></p>
-  <small>by <%= comment.user.profile.username %></small>
+  <div class="flex gap-2">
+    <div class=""><%= profile_image(comment.user, size: "small") %></div>
+
+    <div class="bg-gray-200 rounded-lg mb-1 p-2">
+      <div class= "text-sm font-bold"><%= comment.user.profile.username %></div>
+      <p><%= comment.content %></p>
+    </div>
+        
+  </div>
+  <div class="ml-12"><%= render partial: 'likes/button', locals: { likeable: comment } %></div>
   
   <a href="#" class="comment-form-display">reply</a>
   <div class="comment-form" style="display: none;">
       <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment}%>
   </div>
 
-    <%= render partial: 'likes/button', locals: { likeable: comment } %>
+
   <hr />
 
   <div class="sub-comment" style="padding-left: 20px;">

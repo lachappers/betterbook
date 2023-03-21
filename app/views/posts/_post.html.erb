@@ -1,14 +1,29 @@
 <div class = "bg-white border-2 border-gray-300 rounded-lg mb-1 p-4" id="<%= dom_id post %>" >
-  <div class="">
-    <%# <strong>Post Content:</strong> %>
-    <div><%= post.content %> </div>
-    <br>
-    <%= post.user.profile.username %>
+  <div class="flex flex-col gap-2 ">
+    <div class="flex gap-4">
+      <div>
+        <%= profile_image(@profile.user, size: "medium") %>
+      </div>
+
+      <div class="">
+        <div class="font-bold"><%= post.user.profile.username %></div>
+        <div class="text-sm"><%= post.created_at.strftime("%d %B %Y") %></div>
+      </div>
+
+    </div>
+
+    <div class="text-2xl"><%= post.content %> </div>
+    <div class = "" ><%= post.likes.count %> Likes</div>
+    <hr>
+        <div class="flex border-solid border-2 border-green-400">
+          <%= image_tag "Facebook_Thumb_icon.png", size: '25' %>
+          <%= render partial: 'likes/button', locals: { likeable: post } %>
+        </div>
+    <hr>
+    
   </div>
 
-  <div class="post-likes-container">
-    <%= render partial: 'likes/button', locals: { likeable: post } %>
-  </div>
+
 
   <div class="post-comments-container">
     

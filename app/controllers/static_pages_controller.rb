@@ -9,6 +9,9 @@ class StaticPagesController < ApplicationController
     # @posts = current_user.posts.order(created_at: :desc)
     # scope to see network and own posts
     # @posts = current_user.get_network_posts
+
+    @suggested_friends = User.where.not(id: current_user.friends).limit(5)
+
   end
 
 end

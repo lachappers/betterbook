@@ -13,8 +13,8 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     # @friends = current_user.friends
-    @friendship = current_user.get_friendship( @profile.user)
-    p @friendship
+    # @friendship = current_user.get_friendship( @profile.user)
+    # p @friendship
     # @pending_requests = current_user.sent_requests
     # @friend_requests = current_user.received_requests
   end

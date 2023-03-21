@@ -52,7 +52,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile, allow_destroy: true
 
   def friends
-    sent_friends + received_friends
+    sent_friends.where.not(id: self.id) + received_friends.where.not(id: self.id)
   end
 
   def get_friendship(user)

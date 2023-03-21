@@ -44,7 +44,7 @@ module ApplicationHelper
       end
   
       # copied from justalever - need to verify
-      classes = "#{size} flex-shrink-0 rounded-full border-2 border-white"
+      classes = "#{size} flex-shrink-0 rounded-full border-2 border-gray"
   
       if user.profile_image.attached?
         image_tag user.profile_image, class: classes

@@ -9,15 +9,22 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show] do
     resources :profiles, only: [:show]
+    # resources :friendships
   end
 
   resources :posts do
     resources :comments, only: [:create]
   end
   resources :likes, only: [:create, :destroy]
-  resources :profiles
-  resources :friendships, only: [:create, :destroy, :update]
   
+  resources :profiles, only: [:show] 
+  # do
+    resources :friendships, only: [:destroy, :create, :update]
+  # end
+
 
   resources :static_pages, only: :show
+
+  # resource :friendship
+  # get 'friendships/destroy/:id', to: 'friendships#destroy', as: 'unfriend'
 end

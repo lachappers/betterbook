@@ -39,20 +39,30 @@ class User < ApplicationRecord
   has_many :friendships_as_recipient, class_name: :Friendship, foreign_key: :recipient_id, dependent: :destroy
 
 
-  has_many :sent_friends, -> { merge(Friendship.friends) }, through: :friendships_as_sender, source: :recipient
-  has_many :received_friends, -> { merge(Friendship.friends) }, through: :friendships_as_recipient, source: :sender
+  has_many :sent_friends, -> { merge(Friendship.friends) }, through: :friendships_as_sender, source: :recipient, dependent: :destroy
+  has_many :received_friends, -> { merge(Friendship.friends) }, through: :friendships_as_recipient, source: :sender, dependent: :destroy
 
 
   
-  has_many :sent_requests, -> { merge(Friendship.pending) }, through: :friendships_as_sender, source: :recipient
-  has_many :received_requests, -> { merge(Friendship.pending) }, through: :friendships_as_recipient, source: :sender
+  has_many :sent_requests, -> { merge(Friendship.pending) }, through: :friendships_as_sender, source: :recipient, dependent: :destroy
+  has_many :received_requests, -> { merge(Friendship.pending) }, through: :friendships_as_recipient, source: :sender, dependent: :destroy
 
-  has_one_attached :profile_image
+  has_one_attached :profile_image, dependent: :destroy
 
   accepts_nested_attributes_for :profile, allow_destroy: true
 
   def friends
     sent_friends + received_friends
+  end
+
+  def get_friendship(user)
+    if self.friendships_as_recipient.exists?(sender: user)
+        self.friendships_as_recipient.find_by(sender_id: user.id)
+    elsif self.friendships_as_sender.exists?(recipient: user)
+        self.friendships_as_sender.find_by(recipient_id: user.id)
+    else
+      "potato"
+    end
   end
 
   

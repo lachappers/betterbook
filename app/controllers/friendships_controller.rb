@@ -1,5 +1,6 @@
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
+  # before_action :set_friendship!, only: [:show, :destroy]
 
   def create
     @friendship = Friendship.new(friendship_params)
@@ -33,11 +34,24 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   private
   
   def friendship_params
-    params.require(:friendship).permit(:confirmed, :sender_id, :recipient_id)
+    params.require(:friendship).permit(:confirmed, :sender_id, :recipient_id, :id)
   end
+
+  def user_params
+    params.require(:user).permit(:id)
+  end
+
+  # def set_friendship
+  #   user = User.find(params[:id])
+  #   @friendship = current_user.get_friendship(user)
+  # end
 
   # def get_friendship_from_friends(user)
   #   if current_user.friendships_as_recipient.include?(sender: user)

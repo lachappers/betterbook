@@ -26,4 +26,6 @@ class Friendship < ApplicationRecord
 
     scope :friends, -> { where('confirmed =?', true) }
     scope :pending, -> { where('confirmed =?', false) }
+
+
 end

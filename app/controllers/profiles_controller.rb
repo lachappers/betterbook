@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  include Pagy::Backend
   before_action :set_profile, only: %i[ edit update destroy show]
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :show]
   
@@ -12,6 +13,8 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @posts = @profile.user.posts
+    
     # @friends = current_user.friends
     # @friendship = current_user.get_friendship( @profile.user)
     # p @friendship

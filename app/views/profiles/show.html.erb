@@ -1,7 +1,7 @@
-<div class="p-6">
-  <div class="flex items-center justify-between">
+<div class="p-6 w-full">
+  <div class="flex flex-col gap-2 bg-white w-full">
     <div class="flex-1 flex items-center space-x-6 ">
-      <div class="grow"><%= profile_image(@profile.user, size: "large") %></div>
+      <div class=""><%= profile_image(@profile.user, size: "large") %></div>
 
       <div class = "flex flex-col">
         <h1 class="font-bold text-3xl"><%= @profile.first_name %> <%= @profile.last_name %></h1>
@@ -17,18 +17,33 @@
 
 
 
-      <% if @profile == current_user.profile %>
-        <%= link_to "Edit profile", edit_profile_path, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" if current_user %>
-      <% else %>
-        <%= render 'friendships/button', user: @profile.user %>
-      <% end %>
+      <div>
+        <% if @profile == current_user.profile %>
+          <%= link_to "Edit profile", edit_profile_path, class: "inline-flex justify-center items-center px-5 py-2 rounded-full border ring-4 focus:ring-sky-50 ring-transparent hover:ring-sky-50 hover:border-gray-300" if current_user %>
+        <% else %>
+          <%= render 'friendships/button', user: @profile.user %>
+        <% end %>
+      </div>
       
+    </div>
+    <hr>
+    <div class="flex gap-2">
+      <div>Posts</div>
+      <div>About</div>
+      <div>Friends</div>
+      <div>Photos</div>
+      <div>Videos</div>
+      <div>Check-ins</div>
+      <div>More</div>
     </div>
   </div>
   <div>
+
     <%= render "/shared/postbox" if @profile == current_user.profile %>
-    <ul class="list-none divide-y -mx-6 mt-10">
-      <%= render collection: @profile.user.posts, partial: "posts/post" %>
-    </ul>
+    <%# <ul class="list-none divide-y -mx-6 mt-10"> %>
+    <%= turbo_frame_tag id="posts" do %>
+      <%= render @posts %>
+    <% end %>
+    <%# </ul> %>
   </div>
 </div>

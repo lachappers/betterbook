@@ -1,5 +1,7 @@
+
 <div class = "bg-white border-2 border-gray-300 rounded-lg mb-1 p-4" id="<%= dom_id post %>" >
   <div class="flex flex-col gap-2 ">
+    
     <div class="flex gap-4">
       <div>
         <%= profile_image(post.user, size: "medium") %>
@@ -9,24 +11,29 @@
         <div class="font-bold"><%= post.user.profile.username %></div>
         <div class="text-sm"><%= post.created_at.strftime("%d %B %Y") %></div>
       </div>
-
     </div>
-
-    <div class="text-2xl"><%= post.content %> </div>
-    <div class = "" ><%= post.likes.count %> Likes</div>
-    <hr>
+    <%= turbo_frame_tag post do %>
+      <div class="text-2xl"><%= post.content %> </div>
+      <div class = "" ><%= post.likes.count %> Likes</div>
+      <hr>
+      <div class="post_actions">
         <div class="flex border-solid border-2 border-green-400">
           <%= image_tag "Facebook_Thumb_icon.png", size: '25' %>
           <%= render partial: 'likes/button', locals: { likeable: post } %>
         </div>
+        <div>
+          <%= link_to "Edit Post", edit_post_path(post), class:"btn btn--primary" if post.user == current_user%>
+        </div>
+        <div>
+          <%= button_to "Delete Post", post_path(post), method: :delete, class:"btn btn--primary" if post.user == current_user%>
+        </div>
+      </div>
+    <% end %>
     <hr>
     
   </div>
 
-
-
   <div class="post-comments-container">
-    
     <div class="section-heading mb-2">
       <strong>Comments:</strong>
     </div>

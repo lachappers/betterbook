@@ -1,5 +1,8 @@
 module ApplicationHelper
-    # Returns the new record created in notifications table
+  #  add pagination
+  include Pagy::Frontend
+  
+  # Returns the new record created in notifications table
     def new_notification(user, notifiable_id, notifiable_type)
       notifiable = user.notifications.build(notifiable_id: notifiable_id, notifiable_type: notifiable_type)
       user.notifiable_seen = false
@@ -18,7 +21,9 @@ module ApplicationHelper
       Post.find(comment.post_id)
     end
   
-  
+    def get_user(object)
+      user = self.user
+    end
     # font-family: 'Didact Gothic', sans-serif;
   
     def flash_classes(flash_type)

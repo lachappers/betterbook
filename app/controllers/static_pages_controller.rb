@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
     
 
     # scope to see all posts from everyone
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).limit(10)
     # scope to see own posts only
     # @posts = current_user.posts.order(created_at: :desc)
     # scope to see network and own posts

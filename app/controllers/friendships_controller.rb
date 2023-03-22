@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  include Pagy::Backend
+  
   before_action :authenticate_user!
   # before_action :set_friendship!, only: [:show, :destroy]
 

@@ -1,12 +1,6 @@
-<div class = 'page-container'>
-  <div class = 'title-container' >
-    <h1>Posts#new</h1>
-  </div>
-  <div class = 'content-container'>
-    <%= render "form", post: @post %>
-    <%# <%= render "form" %> 
-  </div>
-  <div class="nav-bar-container">
-    <%= link_to "Back to posts", posts_path %>
-  </div>
+<div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+
+  <%= render "form", post: @post %>
+
+
 </div>

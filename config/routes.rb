@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   
   resources :friendships, only: [:destroy, :create, :update]
   
-
+  resources :comments do
+    collection do
+      post :index
+    end
+  end
 
   resources :static_pages, only: :show
 

@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  include Pagy::Backend
   def index
   end
 

@@ -25,3 +25,8 @@
       filter: grayscale(100%);
     }
   }
+
+  turbo-frame{
+    display: block;
+    border: 1px solid orangered;
+  }

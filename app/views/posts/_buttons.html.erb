@@ -1,0 +1,14 @@
+<hr>
+<div class="flex justify-evenly gap-2 m-2">
+    <div class="flex gap-1">
+        <%= image_tag "Facebook_Thumb_icon.png", size: '25' %>
+        <%= render partial: 'likes/button', locals: { likeable: post } %>
+    </div>
+    <div>
+        <%= link_to "Edit", edit_post_path(post), class:"btn btn--primary" if post.user == current_user%>
+    </div>
+    <div>
+        <%= button_to "Delete", post_path(post), method: :delete, class:"btn btn--primary" if post.user == current_user%>
+    </div>
+</div>
+<hr>

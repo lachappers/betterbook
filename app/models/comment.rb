@@ -30,4 +30,6 @@ class Comment < ApplicationRecord
   has_many :notifications, as: :notifiable
   
   validates :content, length: {maximum: 1500}, allow_blank: false
+
+  scope :ordered, -> { order(created_at: :desc) }
 end

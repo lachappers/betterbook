@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     # scope to see network and own posts
     # @posts = current_user.get_network_posts
 
-    @pagy, @posts = pagy_countless(Post.all.ordered, items:1)
+    # @pagy, @posts = pagy_countless(Post.all.ordered, items:1)
 
     respond_to do |format|
       format.html # GET
@@ -43,6 +43,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments.ordered.where(parent_id: nil).includes(:user)
   end
 
   def update

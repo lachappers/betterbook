@@ -1,6 +1,6 @@
 
     <%= turbo_stream.append "posts" do %>
-    <%= render partial: "post", collection: @posts %>
+        <%= render partial: "post", collection: @posts %>
     <% end %>
 
     <%= turbo_stream.update "next_link" do %>

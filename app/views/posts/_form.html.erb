@@ -1,6 +1,6 @@
 
 
-  <%= form_with model: @post, data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |form| %>
+  <%= form_with model: @post, data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset"} do |form| %>
   
     <div class="hidden">
       <%= form.hidden_field :user_id, value: current_user.id %>

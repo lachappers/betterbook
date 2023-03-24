@@ -1,42 +1,24 @@
+<%= turbo_frame_tag post do %>
+  <div class="w-full mb-4 p-2 border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
 
     <div class="flex flex-col gap-2 ">
-      <div class="flex gap-4">
-        <div>
-          <%= profile_image(post.user, size: "medium") %>
-        </div>
-
-        <div class="">
-          <div class="font-bold"><%= post.user.profile.username %></div>
-          <div class="text-sm"><%= post.created_at.strftime("%d %B %Y") %></div>
-        </div>
-      </div>
+      <%= render "/posts/post_header", post: post %>
+      <div class="text-2xl"><%= post.content %> </div>
+      <div class = "" ><%= post.likes.count %> Likes</div>
     </div>
-
-
-      <div class="flex flex-col gap-2 ">
-        <div class="text-2xl"><%= post.content %> </div>
-        <div class = "" ><%= post.likes.count %> Likes</div>
-      </div>
 
       <div>
-        <%# <%= render "buttons", post: post %>
+        <%= render "/posts/post_buttons", post: post %>
       </div>
 
 
-  <div class="post-comments-container">
-    <div class="section-heading mb-2">
-      <strong>Comments:</strong>
-    </div>
-  
-    <div class="post-comments">
-      <%# <%= render @comments %>
-      <%#<%= render post.comments.where(parent_id: nil).includes(:user).ordered %>
-    </div>
-  
-    <div class="new-post-comment">
-      <%#<%= render partial: 'comments/form', locals: { post: post, parent: nil} %>
+
+    <div class="">
+      <%= render "posts/post_comments", post: post %>
     </div>
   </div>
+<% end %>
+
 
 
 

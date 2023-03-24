@@ -1,4 +1,7 @@
 <%= turbo_frame_tag @post do %>
-  <%= render "form", post: @post %>
-  <%= link_to "Cancel", post_path %>
+  <div class="w-full mb-4 p-2 border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
+    <%= render "/posts/post_header", post: @post %>
+    <%= render "form", post: @post %>
+    <%= link_to "Cancel", post_path(@post) %>
+  </div>
 <% end %>

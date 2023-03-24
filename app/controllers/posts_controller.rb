@@ -43,7 +43,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.ordered.where(parent_id: nil).includes(:user)
   end
 
   def update

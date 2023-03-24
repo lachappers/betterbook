@@ -1,0 +1,10 @@
+<div class="flex gap-4 border border-green-300">
+    <div>
+        <%= profile_image(post.user, size: "medium") %>
+    </div>
+
+    <div class="">
+        <div class="font-bold"><%= post.user.profile.username %></div>
+        <div class="text-sm"><%= post.created_at.strftime("%d %B %Y") %></div>
+    </div>
+</div>

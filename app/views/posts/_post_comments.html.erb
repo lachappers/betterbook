@@ -1,0 +1,15 @@
+<div class="post-comments-container border border-green-400">
+
+    <% if post.comments.any? %>
+        <div class="section-heading mb-2">
+            <strong>Comments:</strong>
+        </div>
+        <div class="post-comments">
+            <%= render post.comments.where(parent_id: nil).includes(:user).ordered %>
+        </div>
+    <% end %>
+
+    <div class="new-post-comment">
+        <%= render partial: 'comments/form', locals: { post: post, parent: nil} %>
+    </div>
+</div>

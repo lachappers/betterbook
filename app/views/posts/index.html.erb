@@ -1,20 +1,25 @@
 
 <%= turbo_frame_tag id="first_turbo" do %>
   
-
-  <%= turbo_frame_tag id="new_post", src: new_post_path %>
+  <%= turbo_frame_tag Post.new, src: new_post_path %>
+  <%# <%= turbo_frame_tag id="new_post", src: new_post_path %>
 
   <%# <%= render partial: "post", collection: @posts %>
-  <%# <%= render @posts %>
+
+  <div class="">
+    <%= turbo_frame_tag id="posts" do %>
+      <%= render @posts %>
+    <% end %>
+  </div>
   <%# <%= turbo_frame_tag "second_turbo" do %>
-  <%= @posts.each do |post| %>
-    <div class = "bg-white border-2 border-gray-300 rounded-lg mb-1 p-4" >
+    <%# <%= @posts.each do |post| %>
+      <%# <div class = "bg-white border-2 border-gray-300 rounded-lg mb-1 p-4" >
       <%= turbo_frame_tag post do %>
-        <%= render post %>
-        <%= render "buttons", post: post %>
-      <% end %>
-      <%= render post.comments.where(parent_id: nil).includes(:user).ordered %>
-    </div>
+          <%# <%= render post %>
+         <%#  <%= render "buttons", post: post %>
+        <%# <% end %>
+        <%# <%= render post.comments.where(parent_id: nil).includes(:user).ordered %>
+      <%# </div>
   <% end %>
 
 

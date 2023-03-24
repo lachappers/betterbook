@@ -1,5 +1,5 @@
 
-    <%= turbo_stream.append "posts" do %>
+    <%= turbo_stream.append "list_posts" do %>
         <%= render partial: "post", collection: @posts %>
     <% end %>
 

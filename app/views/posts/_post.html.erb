@@ -4,7 +4,11 @@
     <div class="flex flex-col gap-2 ">
       <%= render "/posts/post_header", post: post %>
       <div class="text-2xl"><%= post.content %> </div>
-      <div class = "" ><%= post.likes.count %> Likes</div>
+      
+      <div class="flex justify-between">
+        <div class = "" ><%= pluralize(post.likes.count, 'Like') %></div>
+        <div class=""><%= pluralize(post.comments.count, 'Comment') %> </div>
+      </div>
     </div>
 
       <div>

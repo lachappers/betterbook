@@ -16,7 +16,6 @@ class PostsController < ApplicationController
     @post.user = current_user
     if @post.save
       respond_to do |format|
-        # format.html { redirect_to post_url(@post), notice: "Post was successfully created." } # GET
         format.html # GET
         format.turbo_stream # POST
       end
@@ -27,7 +26,7 @@ class PostsController < ApplicationController
   
   def index
     # scope to see all posts from everyone
-    @posts = Post.all.ordered
+    @posts = Post.all.ordered.limit(5)
     # scope to see own posts only
     # @posts = current_user.posts.order(created_at: :desc)
     # scope to see network and own posts

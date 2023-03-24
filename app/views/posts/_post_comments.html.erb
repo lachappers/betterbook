@@ -4,9 +4,11 @@
         <div class="section-heading mb-2">
             <strong>Comments:</strong>
         </div>
-        <div class="post-comments">
-            <%= render post.comments.where(parent_id: nil).includes(:user).ordered %>
-        </div>
+        <%= turbo_frame_tag id="comments" do%>
+            <div class="post-comments">
+                <%= render post.comments.where(parent_id: nil).includes(:user).ordered %>
+            </div>
+        <% end %>
     <% end %>
 
     <div class="new-post-comment">

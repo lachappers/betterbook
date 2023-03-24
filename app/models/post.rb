@@ -19,8 +19,8 @@
 class Post < ApplicationRecord
   belongs_to :user
 
-  has_many :comments
-  has_many :likes, as: :likeable
+  has_many :comments, dependent: :destroy
+  has_many :likes, as: :likeable, dependent: :destroy
   has_many :notifications, as: :notifiable
 
   validates :content, length: {maximum: 1500}, allow_blank: false

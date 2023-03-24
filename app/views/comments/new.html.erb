@@ -1,0 +1,10 @@
+<%= turbo_frame_tag @comment do %>
+  <div class="w-full mb-4 p-2 border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
+    <%= profile_image(current_user, size: "medium") %>
+    <%= render "form", comment: @comment %>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "new_reply" do %>
+    <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment}%>
+<% end%>

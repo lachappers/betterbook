@@ -1,19 +1,31 @@
+<%= turbo_frame_tag comment do %>
 <article>
-  <div class="flex mt-2 gap-2 ">
-    <%= profile_image(comment.user, size: "small") %>
-
-    <div class="bg-gray-200 rounded-lg mb-1 p-2 px-4 min-w-3/6">
-      <div class= "text-sm font-bold"><%= comment.user.profile.username %></div>
-      <p><%= comment.content %></p>
+  <div class="flex flex-col border border-pink-600">
+    <div class="flex-none flex mt-2 gap-2 ">
+      <%= profile_image(comment.user, size: "small") %>
+      <div class="relative min-w-180">
+        <div class="bg-gray-200  rounded-lg mb-1 p-2 px-4">
+          <div class= "text-sm font-bold"><%= comment.user.profile.username %></div>
+          <p><%= comment.content %></p>
+        </div>
+        <div class = "w-12 h-8 flex border border-gray-200 rounded-full gap-1 p-2 bg-white absolute -bottom-5 right-0" >
+          <div class="flex-auto"><%= image_tag "Facebook_Thumb_icon.png", width: "100%" %></div>
+          <div class="flex-auto text-xs"><%= comment.likes.count%></div>
+        </div>
+      </div>
     </div>
-        
+
   </div>
+
   <div class="">
-    <div class="flex flex-wrap ml-16 mb-2 gap-4">
+
+    <div class="flex flex-wrap ml-16 mb-2 gap-4 mt-2">
       <div class="flex-none"><%= render partial: 'likes/button', locals: { likeable: comment } %></div>
-      <a href="#" class="comment-form-display grow">Reply</a>
-      <div class="comment-form shrink-0 min-w-full" style="display: none;">
-          <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment}%>
+      <div>
+        <a href="#" class="comment-form-display grow">Reply</a>
+        <div class="comment-form shrink-0 min-w-full" style="display: none;">
+            <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment}%>
+        </div>
       </div>
     </div>
   </div>
@@ -24,6 +36,7 @@
     <%= render comment.comments.order(id: :desc) %>
   </div> 
 </article>
+<% end %>
 
 <script>
   document.querySelectorAll('.comment-form-display').forEach((el) => {
